@@ -1,14 +1,11 @@
 package blackjack.View;
 
-import blackjack.Model.User;
+import blackjack.Model.User.User;
 import blackjack.Model.Users;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class InputViewTest {
     Users users;

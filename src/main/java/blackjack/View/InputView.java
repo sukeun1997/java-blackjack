@@ -1,6 +1,6 @@
 package blackjack.View;
 
-import blackjack.Model.User;
+import blackjack.Model.User.User;
 import blackjack.Model.Users;
 
 import java.util.ArrayList;

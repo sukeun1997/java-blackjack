@@ -1,11 +1,13 @@
-package blackjack.Model;
+package blackjack.Model.User;
+
+import blackjack.Model.Card.Card;
 
 import java.util.List;
 
 public class User {
     private Name name;
     private Money money;
-    private final List<Card> card;
+    private List<Card> card;
 
     public User(String name, int money, List<Card> cardList) {
         this.name = new Name(name);

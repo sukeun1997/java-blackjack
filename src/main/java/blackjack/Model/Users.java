@@ -1,5 +1,7 @@
 package blackjack.Model;
 
+import blackjack.Model.User.User;
+
 import java.util.List;
 
 public class Users {
