@@ -4,34 +4,34 @@ import java.util.Objects;
 
 public class Card {
 
-    private final CardNumber number;
 
     private final CardType cardType;
 
-    public Card(String num, CardType cardType) {
-        this.number = new CardNumber(num);
+    private final Denomination denomination;
+
+    public Card(Denomination num, CardType cardType) {
+        this.denomination = num;
         this.cardType = cardType;
     }
 
-    public CardNumber getNumber() {
-        return number;
+    public Denomination getDenomination() {
+        return denomination;
     }
 
     public CardType getCardType() {
         return cardType;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Card card = (Card) o;
-        return Objects.equals(number, card.number) && cardType == card.cardType;
+        return cardType == card.cardType && denomination == card.denomination;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(number, cardType);
+        return Objects.hash(cardType, denomination);
     }
 }

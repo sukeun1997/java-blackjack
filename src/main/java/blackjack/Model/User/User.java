@@ -7,12 +7,12 @@ import java.util.List;
 public class User {
     private Name name;
     private Money money;
-    private List<Card> card;
+    private List<Card> cardList;
 
     public User(String name, int money, List<Card> cardList) {
         this.name = new Name(name);
         this.money = new Money(money);
-        this.card = cardList;
+        this.cardList = cardList;
     }
 
     public boolean getName(String username) {
