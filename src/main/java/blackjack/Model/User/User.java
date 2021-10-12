@@ -1,6 +1,7 @@
 package blackjack.Model.User;
 
 import blackjack.Model.Card.Card;
+import blackjack.Model.CardFactory;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,6 +10,7 @@ public class User {
 
     private Name name;
     private Money money;
+
     private List<Card> cardList;
 
     public User(String name, int money, List<Card> cardList) {
@@ -30,6 +32,11 @@ public class User {
         this.money = this.money.addMoney(money);
     }
 
+    public List<Card> getCardList() {
+        return cardList;
+    }
+
+
     public int getMoney() {
         return this.money.getMoney();
     }
@@ -38,8 +45,12 @@ public class User {
         return this.cardList.stream().mapToInt(card -> card.getDenomination().getScore()).sum();
     }
 
-    public String getCardList() {
+    public String getCardListInfo() {
         List<String> cardlist = cardList.stream().map(Card::toString).toList();
         return cardlist.stream().collect(Collectors.joining(","));
+    }
+
+    public void addCard(List<Card> cardList) {
+        cardList = CardFactory.addCard(cardList);
     }
 }
