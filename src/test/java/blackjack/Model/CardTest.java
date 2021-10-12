@@ -3,6 +3,7 @@ package blackjack.Model;
 import blackjack.Model.Card.Card;
 import blackjack.Model.Card.CardType;
 import blackjack.Model.Card.Denomination;
+import blackjack.Model.User.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,12 +18,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 class CardTest {
 
     static List<Card> cardList;
+    static User user;
+
     @BeforeEach
     void setUp() {
         cardList = new ArrayList<>();
         for (int i = 0; i < 5 ; i++) {
             CardFactory.generateCard(cardList);
         }
+        user = new User("pobi", 0, cardList);
     }
 
     @ParameterizedTest
@@ -39,9 +43,11 @@ class CardTest {
 
     @Test
     void 카드_합_구하기() {
-        System.out.println(cardList.stream().mapToInt(value -> value.getDenomination().getScore()).sum());
-        assertThat(cardList.stream().mapToInt(value -> value.getDenomination().getScore()).sum()).isGreaterThanOrEqualTo(5);
+        assertThat(user.getSum()).isGreaterThanOrEqualTo(5);
     }
+
+
+
 
 
 }

@@ -6,17 +6,22 @@ import java.util.List;
 
 public class User {
     private Name name;
+
     private Money money;
     private List<Card> cardList;
-
     public User(String name, int money, List<Card> cardList) {
         this.name = new Name(name);
         this.money = new Money(money);
         this.cardList = cardList;
     }
 
-    public boolean getName(String username) {
+
+    public boolean isName(String username) {
         return name.getName().equals(username);
+    }
+
+    public Name getName() {
+        return name;
     }
 
     public void addMoney(int money) {
@@ -25,5 +30,9 @@ public class User {
 
     public int getMoney() {
         return this.money.getMoney();
+    }
+
+    public int getSum() {
+        return this.cardList.stream().mapToInt(card -> card.getDenomination().getScore()).sum();
     }
 }

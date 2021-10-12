@@ -23,7 +23,7 @@ class InputViewTest {
     @Test
     void User_배팅금액_설정() {
         int money = 10000;
-        User pobi = users.getUserList().stream().filter(user -> user.getName("pobi")).findAny().get();
+        User pobi = users.getUserList().stream().filter(user -> user.isName("pobi")).findAny().get();
         pobi.addMoney(money);
         assertThat(pobi.getMoney()).isEqualTo(10000);
     }
