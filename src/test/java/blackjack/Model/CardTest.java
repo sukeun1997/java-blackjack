@@ -22,10 +22,7 @@ class CardTest {
 
     @BeforeEach
     void setUp() {
-        cardList = new ArrayList<>();
-        for (int i = 0; i < 5 ; i++) {
-            CardFactory.generateCard(cardList);
-        }
+        cardList = CardFactory.generateCard();
         user = new User("pobi", 0, cardList);
     }
 
@@ -38,7 +35,7 @@ class CardTest {
 
     @Test
     void 카드_랜덤_생성() {
-        assertThat(cardList.size()).isEqualTo(5);
+        assertThat(cardList.size()).isEqualTo(2);
     }
 
     @Test

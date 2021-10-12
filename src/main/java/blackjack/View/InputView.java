@@ -1,10 +1,12 @@
 package blackjack.View;
 
+import blackjack.Model.CardFactory;
 import blackjack.Model.User.User;
 import blackjack.Model.Users;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 public class InputView {
@@ -16,7 +18,6 @@ public class InputView {
     public static void init() {
         System.out.println(START_MESSAGE);
         Bet(createUser(sc.nextLine()));
-
     }
 
     public static Users createUser(String name) {
@@ -26,20 +27,20 @@ public class InputView {
     }
 
     private static Users createUser(String[] names) {
-        return new Users(Arrays.stream(names).map(user -> new User(user, 0, new ArrayList<>())).toList());
+        return new Users(Arrays.stream(names).map(user -> new User(user, 0, CardFactory.generateCard())).toList());
     }
 
 
     private static void Bet(Users users)  {
-        for (User user : users.getUserList()) {
-            BetMoney(user);
-        }
+        users.getUserList().stream().limit(users.getUserList().size() - 1).forEach(InputView::BetMoney);
+        OutputView.cardDivide(users);
     }
 
     private static void BetMoney(User user) {
-        if(user.isName("딜러")) return;
         System.out.println(user.getName() + BET_MESSAGE);
         user.addMoney(sc.nextInt());
     }
+
+
 
 }

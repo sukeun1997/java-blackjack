@@ -6,20 +6,22 @@ public class Card {
 
 
     private final CardType cardType;
-
     private final Denomination denomination;
+
+    public Denomination getDenomination() {
+        return denomination;
+    }
 
     public Card(Denomination num, CardType cardType) {
         this.denomination = num;
         this.cardType = cardType;
     }
 
-    public Denomination getDenomination() {
-        return denomination;
-    }
-
-    public CardType getCardType() {
-        return cardType;
+    private String getCardNumber() {
+        if (denomination.getScore() < 10) {
+            return String.valueOf(denomination.getScore());
+        }
+        return String.valueOf(denomination.name().charAt(0));
     }
 
     @Override
@@ -34,4 +36,14 @@ public class Card {
     public int hashCode() {
         return Objects.hash(cardType, denomination);
     }
+
+
+    @Override
+    public String toString() {
+        return getCardNumber()+cardType.getTypeName();
+    }
+
+
 }
+
+
