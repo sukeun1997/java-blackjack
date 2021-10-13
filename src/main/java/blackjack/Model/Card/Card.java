@@ -18,10 +18,14 @@ public class Card {
     }
 
     private String getCardNumber() {
-        if (denomination.getScore() < 10) {
+        if (isNumber()) {
             return String.valueOf(denomination.getScore());
         }
         return String.valueOf(denomination.name().charAt(0));
+    }
+
+    private boolean isNumber() {
+        return denomination.getScore() < 10 || denomination.name().equals("TEN");
     }
 
     @Override

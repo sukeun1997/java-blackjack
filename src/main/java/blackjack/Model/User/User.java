@@ -53,4 +53,9 @@ public class User {
     public void addCard(List<Card> cardList) {
         cardList = CardFactory.addCard(cardList);
     }
+
+    @Override
+    public String toString() {
+        return name + ":" + getMoney();
+    }
 }
