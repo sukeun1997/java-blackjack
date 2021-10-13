@@ -7,8 +7,6 @@ import blackjack.Model.Users;
 import blackjack.View.InputView;
 import blackjack.View.OutputView;
 
-import java.util.stream.Stream;
-
 public class BlackJack {
     private static final String BET_MESSAGE = "의 배팅 금액은?";
     private static final String DELEAR_ADDCARD_MESSAGE = "딜러는 16이하라 한장의 카드를 더 받았습니다.";
@@ -18,9 +16,22 @@ public class BlackJack {
     }
 
     public static void GameRunning(Users users)  {
-        getPlayers(users).forEach(BlackJack::BetMoney);
+        // 배팅
+        users.getUsers().forEach(BlackJack::BetMoney);
+
+        // 카드 분배 완료
         OutputView.cardDivide(users);
-        ActionAddCard(users);
+
+
+        // 2개 합 블랙잭
+        if(!GameRunning.blackJack(users))
+            // 추가 카드 분배
+            ActionAddCard(users);
+
+        // 배팅금액 분배
+
+
+        // 게임 결과
         GameResult(users);
     }
 
@@ -29,9 +40,6 @@ public class BlackJack {
         user.addMoney(InputView.answerMoney());
     }
 
-    private static Stream<User> getPlayers(Users users) {
-        return users.getUserList().stream().limit(users.getUserList().size() - 1);
-    }
     private static void AnswerDealer(User user, RequestUser requestUser) {
         if (requestUser.isAddCard(user.getSum(), 17)) {
             System.out.println(DELEAR_ADDCARD_MESSAGE);
@@ -39,7 +47,7 @@ public class BlackJack {
         }
     }
 
-    private static boolean CheckDelaer(User user) {
+    private static boolean CheckDelaerSum(User user) {
         return user.getSum() > 21;
     }
 
@@ -66,23 +74,22 @@ public class BlackJack {
 
     private static void ActionAddCard(Users users) {;
         // 플레이어
-        for (User user : getPlayers(users).toList()) {
+        for (User user : users.getUsers()) {
             AnswerPlayer(user, (a, b) -> a < 21);
         }
 
         // 딜러
-        User delaer = users.getUserList().stream().filter(user -> user.isName("딜러")).findFirst().get();
-        AnswerDealer(delaer, (a, b) -> a < 17);
+        User dealer = users.getDealer();
+        AnswerDealer(dealer, (a, b) -> a < 17);
 
-        if (CheckDelaer(delaer)) {
+        if (CheckDelaerSum(dealer)) {
             GameRunning.playerWin(users);
         }
     }
     //TODO
     private static void GameResult(Users users) {
-        // 21이 초과시
-        // users.getUserList().stream().filter(user -> user.getSum() > 21).forEach(user -> GameRunning.lose(user));
-
+        OutputView.showResult(users);
+        OutputView.gameEnd(users);
     }
 
 }

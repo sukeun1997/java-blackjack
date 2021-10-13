@@ -2,14 +2,11 @@ package blackjack.View;
 
 import blackjack.Controller.BlackJack;
 import blackjack.Model.CardFactory;
-import blackjack.Model.GameRunning;
-import blackjack.Model.User.RequestUser;
 import blackjack.Model.User.User;
 import blackjack.Model.Users;
 
-import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
-import java.util.*;
-import java.util.stream.Stream;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class InputView {
 

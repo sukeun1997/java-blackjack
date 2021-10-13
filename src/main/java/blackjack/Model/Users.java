@@ -23,4 +23,12 @@ public class Users {
         String names = userNames.stream().collect(Collectors.joining(", "));
         return names;
     }
+
+    public User getDealer() {
+        return userList.get(userList.size() - 1);
+    }
+
+    public List<User> getUsers() {
+        return userList.stream().filter(user -> !user.isName("딜러")).toList();
+    }
 }

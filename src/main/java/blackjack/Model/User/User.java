@@ -2,6 +2,7 @@ package blackjack.Model.User;
 
 import blackjack.Model.Card.Card;
 import blackjack.Model.CardFactory;
+import blackjack.Model.Users;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,7 +43,18 @@ public class User {
     }
 
     public int getSum() {
-        return this.cardList.stream().mapToInt(card -> card.getDenomination().getScore()).sum();
+        int Sum = cardList.stream().mapToInt(value -> value.getDenomination().getScore()).sum();
+        if (cardList.stream().anyMatch(card -> card.getDenomination().isAce())) {
+            Sum = HaveAceToSum(Sum);
+        }
+        return Sum;
+    }
+
+    private int HaveAceToSum(int Sum) {
+        if (Sum <= 11) {
+            Sum += 10; // ace 11로 사용
+        }
+        return Sum;
     }
 
     public String getCardListInfo() {
@@ -53,7 +65,6 @@ public class User {
     public void addCard(List<Card> cardList) {
         cardList = CardFactory.addCard(cardList);
     }
-
     @Override
     public String toString() {
         return name + ":" + getMoney();
