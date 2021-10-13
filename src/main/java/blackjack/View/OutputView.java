@@ -16,8 +16,16 @@ public class OutputView {
             System.out.println(user.getName()+"카드: "+user.getCardListInfo());
     }
 
+    public static void ShowEndCard(User user) {
+            System.out.println(user.getName()+"카드: "+user.getCardListInfo() +"- 결과:"+user.getSum());
+    }
+
     public static void gameEnd(Users users) {
         System.out.println(END_MESSAGE);
         users.getUserList().stream().forEach(System.out::println);
+    }
+
+    public static void showResult(Users users) {
+        users.getUserList().stream().forEach(OutputView::ShowEndCard);
     }
 }

@@ -18,6 +18,7 @@ public class GameRunning  {
 
         // 플레이어 패의 합이 21 이 넘었을떄 초기화
         users.getUserList().stream().filter(user -> user.getMoney() < 0).forEach(user -> user.addMoney(Math.abs(user.getMoney()*2)));
+        OutputView.showResult(users);
         OutputView.gameEnd(users);
     }
 }
