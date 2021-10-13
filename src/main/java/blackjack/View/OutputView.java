@@ -10,6 +10,7 @@ public class OutputView {
     public static void cardDivide(Users users) {
         System.out.println("딜러와 " + users.getName() + "에게 2장을 나누었습니다.");
         users.getUserList().stream().forEach(user -> ShowCard(user));
+        System.out.println();
     }
 
     public static void ShowCard(User user) {
@@ -25,7 +26,12 @@ public class OutputView {
         users.getUserList().stream().forEach(System.out::println);
     }
 
+    public static void loseMessage() {
+        System.out.println(LOSE_MESSAGE);
+    }
+
     public static void showResult(Users users) {
         users.getUserList().stream().forEach(OutputView::ShowEndCard);
+        System.out.println();
     }
 }

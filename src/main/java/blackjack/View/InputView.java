@@ -7,11 +7,13 @@ import blackjack.Model.Users;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class InputView {
 
     private static final String START_MESSAGE = "게임에 참여할 사람의 이름을 입력하세요.(쉼표 기준으로 분리)" ;
     private static final String CARD_ADD_MESSAGE = "는 한장의 카드를 더 받겠습니까 ? (예는 y, 아니오는 n)";
+    private static final String INPUT_ERROR_MESSAGE = "y 또는 n 만 입력할 수 있습니다.";
 
     static Scanner sc = new Scanner(System.in);
 
@@ -38,6 +40,12 @@ public class InputView {
     public static String answerAddCard(User user) {
         //TODO y,n 검증
         System.out.println(user.getName() + CARD_ADD_MESSAGE);
-        return sc.next();
+        return CheckAnswer(sc.next());
+    }
+
+    private static String CheckAnswer(String answer) {
+        if(!answer.matches("[Yy]|[Nn]"))
+            throw new IllegalArgumentException(INPUT_ERROR_MESSAGE);
+        return answer;
     }
 }

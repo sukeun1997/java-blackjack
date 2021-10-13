@@ -3,6 +3,8 @@ package blackjack.Model;
 import blackjack.Model.User.User;
 import blackjack.View.OutputView;
 
+import java.util.Comparator;
+
 public class GameRunning  {
 
     public static void lose(User user) {
@@ -32,5 +34,12 @@ public class GameRunning  {
 
     public static boolean isBlackJack(User user) {
         return user.getSum() == 21;
+    }
+
+    public static void DivdeBetMoney(Users users) {
+        User user = users.getUserList().stream().filter(user1 -> user1.getSum() <= 21).max(Comparator.comparingInt(User::getSum)).get();
+        user.addMoney(user.getMoney() / 2);
+
+        users.getUsers().stream().filter(user1 -> user1 != user).filter(user1 -> user1.getMoney() > 0).forEach(user1 -> user1.addMoney(-user1.getMoney()*2));
     }
 }

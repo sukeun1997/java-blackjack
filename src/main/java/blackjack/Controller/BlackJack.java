@@ -9,7 +9,7 @@ import blackjack.View.OutputView;
 
 public class BlackJack {
     private static final String BET_MESSAGE = "의 배팅 금액은?";
-    private static final String DELEAR_ADDCARD_MESSAGE = "딜러는 16이하라 한장의 카드를 더 받았습니다.";
+    private static final String DELEAR_ADDCARD_MESSAGE = "\n딜러는 16이하라 한장의 카드를 더 받았습니다.\n";
 
     public static void run() {
         InputView.init();
@@ -29,8 +29,13 @@ public class BlackJack {
             ActionAddCard(users);
 
         // 배팅금액 분배
+        GameRunning.DivdeBetMoney(users);
 
 
+        if (CheckDelaerSum(users.getDealer())) {
+            GameRunning.playerWin(users);
+            return;
+        }
         // 게임 결과
         GameResult(users);
     }
@@ -68,23 +73,19 @@ public class BlackJack {
         if (answer.equalsIgnoreCase("y")) {
             user.addCard(user.getCardList());
             OutputView.ShowCard(user);
-            AnswerPlayer(user, (a, b) -> a < 21);
+            AnswerPlayer(user, (a, b) -> a <= 21);
         }
     }
 
     private static void ActionAddCard(Users users) {;
         // 플레이어
         for (User user : users.getUsers()) {
-            AnswerPlayer(user, (a, b) -> a < 21);
+            AnswerPlayer(user, (a, b) -> a <= 21);
         }
 
         // 딜러
         User dealer = users.getDealer();
         AnswerDealer(dealer, (a, b) -> a < 17);
-
-        if (CheckDelaerSum(dealer)) {
-            GameRunning.playerWin(users);
-        }
     }
     //TODO
     private static void GameResult(Users users) {
