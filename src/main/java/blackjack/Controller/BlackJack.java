@@ -28,14 +28,16 @@ public class BlackJack {
             // 추가 카드 분배
             ActionAddCard(users);
 
-        // 배팅금액 분배
-        GameRunning.DivdeBetMoney(users);
-
-
+        // 딜러 추가 카드 합 21 넘을시
         if (CheckDelaerSum(users.getDealer())) {
             GameRunning.playerWin(users);
             return;
         }
+
+        // 배팅금액 분배
+        GameRunning.DivdeBetMoney(users);
+
+
         // 게임 결과
         GameResult(users);
     }
