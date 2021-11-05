@@ -34,6 +34,18 @@ public class Running {
 
         // 카드 추가 분배
         addDrawCard(dealer,cardDeck);
+
+        // 결과
+        ResultBlackJack(dealer);
+    }
+
+    private static void ResultBlackJack(Dealer dealer) {
+
+        OutputView.showResult(dealer);
+
+        for (Gamer gamer : gamerList) {
+            OutputView.showResult(gamer);
+        }
     }
 
     private static void addDrawCard(Dealer dealer, CardDeck cardDeck) {
