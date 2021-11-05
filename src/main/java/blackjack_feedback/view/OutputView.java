@@ -11,18 +11,9 @@ import java.util.List;
 
 public class OutputView {
 
-    static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
-    public static void showCardInfo(Dealer dealer, List<Gamer> gamerList) {
-
-        System.out.print(dealer.getName() +": ");
-        showHaveCardList(dealer);
-
-
-        for (Gamer gamer : gamerList) {
-            System.out.println(gamer.getName() +": ");
-            showHaveCardList(gamer);
-        }
+    public static void showCardInfo(Player player) {
+        System.out.print(player.getName() +": ");
+        showHaveCardList(player);
     }
 
     private static void showHaveCardList(Player player) {
