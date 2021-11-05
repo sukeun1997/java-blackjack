@@ -1,5 +1,6 @@
 package blackjack_feedback.controller;
 
+import blackjack_feedback.model.CardDeck;
 import blackjack_feedback.model.Gamer;
 import blackjack_feedback.view.InputView;
 
@@ -13,10 +14,21 @@ public class Running {
 
     static List<Gamer> gamerList = new ArrayList<>();
 
+
     public static void RunningGame() {
+
+        CardDeck cardDeck = new CardDeck();
+
+        // 플레이어 생성
         String[] gamers = InputView.createGamers();
         setGamers(gamers);
+
+        // 플레이어 배팅
         setMoney(gamerList);
+
+
+        // 카드 배팅
+
     }
 
     private static void setGamers(String[] gamersName) {
