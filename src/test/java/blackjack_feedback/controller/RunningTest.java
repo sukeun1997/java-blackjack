@@ -1,11 +1,16 @@
 package blackjack_feedback.controller;
 
+import blackjack_feedback.model.Card;
 import blackjack_feedback.model.CardDeck;
 import blackjack_feedback.model.Dealer;
 import blackjack_feedback.model.Gamer;
 import blackjack_feedback.model.cardState.State;
+import blackjack_feedback.model.constant.Denomination;
+import blackjack_feedback.model.constant.Suit;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -37,10 +42,14 @@ class RunningTest {
         assertThat(gamer.getCardList().size()).isEqualTo(2);
 
         System.out.println("플레이어");
-        gamer.getCardList().stream().forEach(card -> System.out.println("card : "+ card.getDenomination() + " , " + card.getSuit()));
+        showCardInfo(gamer.getCardList());
         System.out.println("딜러");
-        dealer.getCardList().stream().forEach(card -> System.out.println("card : "+ card.getDenomination() + " , " + card.getSuit()));
+        showCardInfo(dealer.getCardList());
         assertThat(dealer.getCardList().size()).isEqualTo(2);
+    }
+
+    private void showCardInfo(List<Card> cardList) {
+        cardList.stream().forEach(card -> System.out.println("card : " + card.getDenomination() + " , " + card.getSuit()));
     }
 
     @Test
@@ -64,5 +73,16 @@ class RunningTest {
         }
 
         assertThat(dealer.getState()).isEqualTo(State.LOSE);
+    }
+
+    @Test
+    @DisplayName("ACE 점수 테스트")
+    void AceScoretest() {
+        DrawCard();
+        gamer.getCardList().add(new Card(Denomination.ACE, Suit.SPADES));
+
+        showCardInfo(gamer.getCardList());
+        System.out.println(gamer.totalScore());
+
     }
 }
