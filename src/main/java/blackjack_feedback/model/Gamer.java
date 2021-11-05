@@ -1,18 +1,18 @@
 package blackjack_feedback.model;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Gamer implements  Player{
 
     private final String name;
-    private final List<Card> cardDeck;
+    private ArrayList<Card> cardDeck = new ArrayList<>();
 
     private int betMoney;
 
     public Gamer(String person) {
         this.name = person;
-        this.cardDeck = new LinkedList<>();
         this.betMoney = 0;
     }
 
