@@ -87,10 +87,20 @@ public class Running {
         for (Gamer gamer : gamerList) {
             drawCards(gamer, cardDeck, DRAW_COUNT);
             OutputView.showCardInfo(gamer);
+            isBlackJack(gamer);
         }
         drawCards(dealer, cardDeck,DRAW_COUNT);
         OutputView.showCardInfo(dealer);
+        isBlackJack(dealer);
 
+
+    }
+
+    private static void isBlackJack(Player player) {
+
+        if (player.totalScore() == 21) {
+            player.setState(State.WIN);
+        }
     }
 
     public static void drawCards(Player player, CardDeck cardDeck, int count) {
