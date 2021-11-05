@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 public class InputView {
 
+    private static final String BETMONEY_REQUEST_MESSAGE = "의 배팅 금액은?";
     static Scanner sc = new Scanner(System.in);
 
     public static String[] createGamers() {
@@ -30,6 +31,23 @@ public class InputView {
             return false;
         }
         return false;
+    }
+
+    public static int betMoney(String name) {
+        System.out.println("\n"+ name + BETMONEY_REQUEST_MESSAGE);
+        int money = sc.nextInt();
+        if (money < 1 && money >= Integer.MAX_VALUE) {
+            throw new IllegalArgumentException("배팅 머니는 0 이상 " + Integer.MAX_VALUE + " 이하의 값만 입력 가능합니다.");
+        }
+        return money;
+    }
+
+    public static int betMoney(int Money) {
+        int money = Money;
+        if (money < 1 && money >= Integer.MAX_VALUE) {
+            throw new IllegalArgumentException("배팅 머니는 0 이상 " + Integer.MAX_VALUE + " 이하의 값만 입력 가능합니다.");
+        }
+        return money;
     }
 
 }

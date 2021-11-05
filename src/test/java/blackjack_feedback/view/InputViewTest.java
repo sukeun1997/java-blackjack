@@ -2,6 +2,7 @@ package blackjack_feedback.view;
 
 import blackjack_feedback.model.Dealer;
 import blackjack_feedback.model.Gamer;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ class InputViewTest {
         return gamerList;
     }
 
-    //TODO
+
     @Test
     void 플레이어이름_유효성_검사() {
 
@@ -49,6 +50,17 @@ class InputViewTest {
 
         if(matcher.find()) {
             System.out.println(matcher.group());
+        }
+    }
+
+    @Test
+    @DisplayName("배팅머니 테스트")
+    void betMoney() {
+        createGamer("json,sim");
+
+        for (Gamer gamer : gamerList) {
+            gamer.addMoney(InputView.betMoney(10000));
+            assertThat(gamer.getBetMoney()).isEqualTo(10000);
         }
     }
 }
