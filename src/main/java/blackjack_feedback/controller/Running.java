@@ -5,6 +5,7 @@ import blackjack_feedback.model.cardState.State;
 import blackjack_feedback.view.InputView;
 import blackjack_feedback.view.OutputView;
 
+import java.lang.management.MemoryUsage;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -113,6 +114,8 @@ public class Running {
         }
     }
 
+    public static void draw() {
+    }
 
     private static void setGamers(String[] gamersName) {
 
